@@ -2,6 +2,8 @@ package com.company;
 
 
 import com.company.Car.Generator;
+import com.company.Human.Gamer;
+import com.company.Human.GamerCreator;
 import com.company.Human.Mechanic;
 import com.company.Car.Generator;
 
@@ -23,5 +25,7 @@ public class Main {
         System.out.println(carGenerator.availableCars.size());
         System.out.println(carGenerator.availableCars);
        // carGenerator.availableCars.get(1);
+        GamerCreator gamerCreator = new GamerCreator();
+        gamerCreator.Generate();
     }
 }
