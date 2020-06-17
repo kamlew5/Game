@@ -41,11 +41,10 @@ public class Car {
     }
     @Override
     public String toString() {
-        return "Car" +
-                "mark='" + mark + '\'' +
-                ", color='" + color + '\'' +
-                ", segment='" + segment + '\'' +
-                ", course=" + course +
-                ", price=" + price;
+        return "Marka='" + mark + '\'' +
+                ", Kolor='" + color + '\'' +
+                ", Segment='" + segment + '\'' +
+                ", Przebieg=" + course +
+                ", Cena=" + price;
     }
 }

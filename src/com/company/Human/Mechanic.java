@@ -6,8 +6,8 @@ public class Mechanic extends Human {
     private Integer ChanceBroke;
     private Double price;
 
-    public Mechanic(String name, Double cash, Integer chanceRepair, Integer chanceBroke, Double price) {
-        super(name, cash);
+    public Mechanic(String name, Integer chanceRepair, Integer chanceBroke, Double price) {
+        super(name);
         ChanceRepair = chanceRepair;
         ChanceBroke = chanceBroke;
         this.price = price;

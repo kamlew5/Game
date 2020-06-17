@@ -4,9 +4,11 @@ import com.company.Car.Car;
 import java.util.ArrayList;
 
 public class Gamer extends Human {
-    private ArrayList<Car> garage = new ArrayList<>();
-    public Gamer(String name, Double cash, ArrayList<Car> garage) {
-        super(name, cash);
-        this.garage = garage;
+    //private ArrayList<Car> garage = new ArrayList<>();
+    private Double cash;
+    public Gamer(String name, Double cash) {
+        super(name);
+        this.cash = cash;
+        //this.garage = garage;
     }
 }

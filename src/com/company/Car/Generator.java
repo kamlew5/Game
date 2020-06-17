@@ -104,7 +104,12 @@ public class Generator {
         Double c5 = CreatePrice(a1,5);
         Double p1 = CreatePrice(a1);
         int carCourse = ThreadLocalRandom.current().nextInt(1000, 999999);
-        System.out.println(a1+" "+a2+" "+a3+" "+carCourse+" "+b1+" "+b2+" "+b3+" "+b4+" "+b5+" "+c1+" "+c2+" "+c3+" "+c4+" "+c5+" "+p1);
+        //System.out.println(a1+" "+a2+" "+a3+" "+carCourse+" "+b1+" "+b2+" "+b3+" "+b4+" "+b5+" "+c1+" "+c2+" "+c3+" "+c4+" "+c5+" "+p1);
         availableCars.add(new Car(a1,a2,a3,carCourse,b1,c1,b2,c2,b3,c3,b4,c4,b5,c5,p1));
+    }
+    public void DisplayCars(){
+        for (int i = 0; i < availableCars.size(); i++) {
+            System.out.println(i+1+" "+availableCars.get(i).toString());
+        }
     }
 }
