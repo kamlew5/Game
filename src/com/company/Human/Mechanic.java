@@ -1,4 +1,5 @@
 package com.company.Human;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Mechanic extends Human {
     private Integer ChanceRepair;
@@ -11,11 +12,12 @@ public class Mechanic extends Human {
         ChanceBroke = chanceBroke;
         this.price = price;
     }
-
     public void Repair() {
-        if(this.ChanceRepair == 100) System.out.println("Dziala");
+        int randRepair = ThreadLocalRandom.current().nextInt(0, 100 + 1);
+        if(this.ChanceRepair >= randRepair) System.out.println("Dziala");
         else System.out.println("Nie działa");
-        if(this.ChanceBroke == 0) System.out.println("Dziala 2");
+        int randBroke = ThreadLocalRandom.current().nextInt(0, 100 + 1);
+        if(this.ChanceBroke <= randBroke) System.out.println("Dziala 2");
         else System.out.println("Nie działa 2");
     }
 }
