@@ -4,7 +4,7 @@ public class Car {
     private String mark;
     private String color;
     private String segment;
-    private Double course;
+    private Integer course;
     private Integer brokeEngine;
     private Double priceEngine;
     private Integer brokeBrakes;
@@ -17,7 +17,7 @@ public class Car {
     private Double priceCarSuspension;
     private Double price;
 
-    public Car(String mark, String color, String segment, Double course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
+    public Car(String mark, String color, String segment, Integer course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
                Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody, Integer brokeCarSuspension, Double priceCarSuspension,
                Double price) {
         this.mark = mark;
@@ -35,5 +35,17 @@ public class Car {
         this.brokeCarSuspension = brokeCarSuspension;
         this.priceCarSuspension = priceCarSuspension;
         this.price = price;
+    }
+    private void WashCar(){
+        System.out.println("Wash, Wash!");
+    }
+    @Override
+    public String toString() {
+        return "Car" +
+                "mark='" + mark + '\'' +
+                ", color='" + color + '\'' +
+                ", segment='" + segment + '\'' +
+                ", course=" + course +
+                ", price=" + price;
     }
 }

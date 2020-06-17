@@ -17,7 +17,11 @@ public class Main {
         //adrian.Repair();
         Generator carGenerator = new Generator();
         carGenerator.Generate();
-
-
+        //carGenerator.Generate();
+        //carGenerator.Generate();
+        //carGenerator.Generate();
+        System.out.println(carGenerator.availableCars.size());
+        System.out.println(carGenerator.availableCars);
+       // carGenerator.availableCars.get(1);
     }
 }
