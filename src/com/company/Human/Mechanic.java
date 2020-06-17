@@ -11,4 +11,11 @@ public class Mechanic extends Human {
         ChanceBroke = chanceBroke;
         this.price = price;
     }
+
+    public void Repair() {
+        if(this.ChanceRepair == 100) System.out.println("Dziala");
+        else System.out.println("Nie działa");
+        if(this.ChanceBroke == 0) System.out.println("Dziala 2");
+        else System.out.println("Nie działa 2");
+    }
 }
