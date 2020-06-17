@@ -2,24 +2,25 @@ package com.company.Car;
 
 public class Car {
     private String mark;
-    private String model;
     private String color;
     private String segment;
     private Double course;
-    private Boolean brokeEngine;
+    private Integer brokeEngine;
     private Double priceEngine;
-    private Boolean brokeBrakes;
+    private Integer brokeBrakes;
     private Double priceBrakes;
-    private Boolean brokeGearBox;
+    private Integer brokeGearBox;
     private Double priceGearBox;
-    private Boolean brokeCarBody;
+    private Integer brokeCarBody;
     private Double priceCarBody;
-    private Boolean brokeCarSuspension;
+    private Integer brokeCarSuspension;
     private Double priceCarSuspension;
+    private Double price;
 
-    public Car(String mark, String model, String color, String segment, Double course, Boolean brokeEngine, Double priceEngine, Boolean brokeBrakes, Double priceBrakes, Boolean brokeGearBox, Double priceGearBox, Boolean brokeCarBody, Double priceCarBody, Boolean brokeCarSuspension, Double priceCarSuspension) {
+    public Car(String mark, String color, String segment, Double course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
+               Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody, Integer brokeCarSuspension, Double priceCarSuspension,
+               Double price) {
         this.mark = mark;
-        this.model = model;
         this.color = color;
         this.segment = segment;
         this.course = course;
@@ -33,5 +34,6 @@ public class Car {
         this.priceCarBody = priceCarBody;
         this.brokeCarSuspension = brokeCarSuspension;
         this.priceCarSuspension = priceCarSuspension;
+        this.price = price;
     }
 }
