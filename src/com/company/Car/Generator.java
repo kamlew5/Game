@@ -1,4 +1,6 @@
 package com.company.Car;
+import com.company.Human.Gamer;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -9,7 +11,6 @@ public class Generator {
     private String[] carColor = {"Różowy", "Czerwony", "Turkusowy", "WTF! Co to za kolor!", "Niebieski", "Zielony", "Jakiś"};
     private String[] carSegment = {"Mini", "Small", "Medium", "Large", "Exectutive", "Luxury", "Sport"};
     public ArrayList<Car> availableCars = new ArrayList<>();
-    private Car cacko;
 
     private String CarGenerator(String[] generateValue) {
         Random r = new Random();
@@ -111,5 +112,14 @@ public class Generator {
         for (int i = 0; i < availableCars.size(); i++) {
             System.out.println(i+1+" "+availableCars.get(i).toString());
         }
+    }
+    public void ChangeOwner(Gamer gamer){
+        System.out.println(availableCars.get(1));
+        System.out.println(gamer.garage);
+        gamer.garage.add(availableCars.get(1));
+        System.out.println(gamer.garage);
+        availableCars.remove(1);
+        System.out.println(availableCars);
+        System.out.println("Działa");
     }
 }
