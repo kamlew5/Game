@@ -113,13 +113,12 @@ public class Generator {
             System.out.println(i+1+" "+availableCars.get(i).toString());
         }
     }
-    public void ChangeOwner(Gamer gamer){
-        System.out.println(availableCars.get(1));
-        System.out.println(gamer.garage);
-        gamer.garage.add(availableCars.get(1));
-        System.out.println(gamer.garage);
-        availableCars.remove(1);
+    public void ChangeOwner(Gamer gamer, int helper){
+        System.out.println(availableCars.get(helper));
         System.out.println(availableCars);
-        System.out.println("Działa");
+        gamer.garage.add(availableCars.get(helper));
+        System.out.println(gamer.garage);
+        availableCars.remove(helper);
+        System.out.println(availableCars);
     }
 }

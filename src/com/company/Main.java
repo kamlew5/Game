@@ -32,7 +32,7 @@ public class Main {
         //gamerCreator.Generate();
         Gamer gamer = new Gamer("Janusz",1000.0);
         //base.Menu(carGenerator, gamer);
-        carGenerator.ChangeOwner(gamer);
+        carGenerator.ChangeOwner(gamer, 0);
 
 
 
