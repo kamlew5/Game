@@ -1,16 +1,17 @@
 package com.company.Car;
 import com.company.Human.Gamer;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.text.DecimalFormat;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Generator {
+public class Generator{
     private String[] carMarks = {"Saab 9.3", "Wieśwagen Passat", "Fiat Punto", "Mercedes AMG GT",
             "BMW 3", "Kia Stringer", "Seat Ibiza", "Mitsubishi Galant"};
     private String[] carColor = {"Różowy", "Czerwony", "Turkusowy", "WTF! Co to za kolor!", "Niebieski", "Zielony", "Jakiś"};
     private String[] carSegment = {"Mini", "Small", "Medium", "Large", "Exectutive", "Luxury", "Sport"};
     public ArrayList<Car> availableCars = new ArrayList<>();
+    private DecimalFormat df = new DecimalFormat("#.#");
 
     private String CarGenerator(String[] generateValue) {
         Random r = new Random();
@@ -103,22 +104,28 @@ public class Generator {
         Double c3 = CreatePrice(a1,3);
         Double c4 = CreatePrice(a1,4);
         Double c5 = CreatePrice(a1,5);
+        int carCourse = ThreadLocalRandom.current().nextInt(10000, 99999);
         Double p1 = CreatePrice(a1);
-        int carCourse = ThreadLocalRandom.current().nextInt(1000, 999999);
-        //System.out.println(a1+" "+a2+" "+a3+" "+carCourse+" "+b1+" "+b2+" "+b3+" "+b4+" "+b5+" "+c1+" "+c2+" "+c3+" "+c4+" "+c5+" "+p1);
         availableCars.add(new Car(a1,a2,a3,carCourse,b1,c1,b2,c2,b3,c3,b4,c4,b5,c5,p1));
+
     }
     public void DisplayCars(){
         for (int i = 0; i < availableCars.size(); i++) {
             System.out.println(i+1+" "+availableCars.get(i).toString());
         }
     }
+    public void SortCars(){
+        availableCars.sort(Comparator.comparing(Car::getMark));
+    }
     public void ChangeOwner(Gamer gamer, int helper){
-        System.out.println(availableCars.get(helper));
-        System.out.println(availableCars);
-        gamer.garage.add(availableCars.get(helper));
-        System.out.println(gamer.garage);
-        availableCars.remove(helper);
-        System.out.println(availableCars);
+        if(gamer.cash<(availableCars.get(helper).getPrice()*1.02)){
+            System.out.println("Za mało szmalu");
+        }
+        else {
+            gamer.garage.add(availableCars.get(helper));
+            gamer.cash -= (availableCars.get(helper).getPrice()*1.02);
+            availableCars.remove(helper);
+            System.out.println("Kupiłeś samochód");
+        }
     }
 }

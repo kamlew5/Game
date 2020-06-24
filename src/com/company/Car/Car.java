@@ -18,8 +18,8 @@ public class Car {
     private Double price;
 
     public Car(String mark, String color, String segment, Integer course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
-               Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody, Integer brokeCarSuspension, Double priceCarSuspension,
-               Double price) {
+               Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody,
+               Integer brokeCarSuspension, Double priceCarSuspension, Double price) {
         this.mark = mark;
         this.color = color;
         this.segment = segment;
@@ -35,6 +35,12 @@ public class Car {
         this.brokeCarSuspension = brokeCarSuspension;
         this.priceCarSuspension = priceCarSuspension;
         this.price = price;
+    }
+    public String getMark() {
+        return mark;
+    }
+    public Double getPrice() {
+        return price;
     }
     private void WashCar(){
         System.out.println("Wash, Wash!");

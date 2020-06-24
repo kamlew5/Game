@@ -28,11 +28,12 @@ public class Main {
             carGenerator.Generate();
             buyerCreator.Create();
         }
+        carGenerator.SortCars();
         base.Welcome();
         //gamerCreator.Generate();
-        Gamer gamer = new Gamer("Janusz",1000.0);
-        //base.Menu(carGenerator, gamer);
-        carGenerator.ChangeOwner(gamer, 0);
+        Gamer gamer = new Gamer("Janusz");
+        base.Menu(carGenerator, gamer);
+
 
 
 

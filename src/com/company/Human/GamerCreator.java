@@ -18,7 +18,7 @@ public class GamerCreator {
     public void Generate(){
         int number = getNumber();
         for (int i = 0; i < number; i++) {
-            gamers.add(new Gamer(getName(),10000.0));
+            gamers.add(new Gamer(getName()));
         }
     }
 }
