@@ -2,8 +2,8 @@ package com.company.Car;
 
 public class Car {
     private String mark, color, segment;
-    private Integer course, brokeEngine, brokeBrakes, brokeGearBox, brokeCarBody, brokeCarSuspension;
-    private Double priceEngine, priceBrakes, priceGearBox, priceCarBody, priceCarSuspension, price;
+    public Integer course, brokeEngine, brokeBrakes, brokeGearBox, brokeCarBody, brokeCarSuspension;
+    public Double priceEngine, priceBrakes, priceGearBox, priceCarBody, priceCarSuspension, price;
 
     public Car(String mark, String color, String segment, Integer course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
                Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody,
@@ -37,27 +37,34 @@ public class Car {
         System.out.println("Wash, Wash!");
     }
 
-    public void diplayBrokes(){
-        String a1 = "", a2 = "", a3 = "", a4 = "", a5 = "";
+    public String diplayBrokes(){
+        String a1, a2, a3, a4, a5;
         if(this.brokeEngine==1){
-            a1 = "*Silnik \n";
+            a1 = "Silnik - popsuty, ";
         }
-        if(this.brokeBrakes==1){
-            a2 = "*Hamulce \n";
-        }
-        if(this.brokeGearBox==1){
-            a3 = "*Skrzynia \n";
-        }
-        if(this.brokeCarBody==1){
-            a4 = "*Karoseria \n";
-        }
-        if(this.brokeCarSuspension==1){
-            a5 = "*Zawieszenie \n";
-        }
-        if(a1.equals("")&&a2.equals("")&&a3.equals("")&&a4.equals("")&&a5.equals(""))
-            System.out.println("Wszystko sprawne");
         else
-            System.out.println("Do naprawy: \n"+a1+a2+a3+a4+a5);
+            a1 = "Silnik - sprawny, ";
+        if(this.brokeBrakes==1){
+            a2 = "Hamulce - popsute, ";
+        }
+        else
+            a2 = "Hamulce - sprawne, ";
+        if(this.brokeGearBox==1){
+            a3 = "Skrzynia - sprawna, ";
+        }
+        else
+            a3 = "Skrzynia - sprawna, ";
+        if(this.brokeCarBody==1){
+            a4 = "Karoseria - popsuta,";
+        }
+        else
+            a4 = "Karoseria - cała, ";
+        if(this.brokeCarSuspension==1){
+            a5 = "Zawieszenie - posute";
+        }
+        else
+            a5 = "Zawieszenie - sprawne";
+        return a1+a2+a3+a4+a5;
     }
 
     public String getText(){
@@ -67,6 +74,13 @@ public class Car {
                 course+", "+
                 price+", "+
                 ((100-(this.brokeCarSuspension+this.brokeCarBody+this.brokeGearBox+this.brokeEngine+this.brokeBrakes)*20))+"%";
+    }
+    public String Display(){
+        return mark+", "+
+                segment+", "+
+                color+", "+
+                course+", "+
+                price+", "+ diplayBrokes();
     }
     @Override
     public String toString() {

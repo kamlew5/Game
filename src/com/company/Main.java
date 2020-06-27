@@ -37,7 +37,6 @@ public class Main {
         Gamer gamer = new Gamer("Janusz");
         //Uruchomienie menu
         while (gamer.cash<20000.0)
-            base.Menu(carGenerator, gamer, buyerCreator);
-
+            base.Menu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrian);
     }
 }

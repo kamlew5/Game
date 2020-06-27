@@ -4,14 +4,15 @@ import com.company.Car.Car;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Gamer extends Human {
+public class Gamer{
     //lista aut w garażu
     public ArrayList<Car> garage = new ArrayList<>();
     public Double cash = 10000.0;
     public Double costs = 0.0;
+    public String name;
     //dziedziczenie z klasy human
     public Gamer(String name) {
-        super(name);
+        this.name = name;
     }
 
     //stara funkcja do wypisywania aut
@@ -26,6 +27,11 @@ public class Gamer extends Human {
     public void ShowCars2(){
         for (Car car : garage) {
             System.out.println(car.getText());
+        }
+    }
+    public void DisplayGarage(){
+        for (Car car : this.garage) {
+            System.out.println(car.Display());
         }
     }
 }
