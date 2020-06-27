@@ -1,4 +1,5 @@
 package com.company.Car;
+import com.company.Game_Interface.TransactionGenerator;
 import com.company.Human.Gamer;
 
 import java.text.DecimalFormat;
@@ -130,7 +131,7 @@ public class Generator{
         availableCars.sort(Comparator.comparing(Car::getMark));
     }
     //zakup auta
-    public void ChangeOwner(Gamer gamer, int helper){
+    public void ChangeOwner(Gamer gamer, int helper, TransactionGenerator transactionGenerator){
         //odejmowanie o jeden by się zgadzały wartości z tablicą
         helper--;
         //sprawdza, czy nas stać na zakup + podatek
@@ -142,6 +143,7 @@ public class Generator{
             gamer.garage.add(availableCars.get(helper));
             //usunięcie kasy
             gamer.cash -= (availableCars.get(helper).getPrice()*1.02);
+            transactionGenerator.Generate(availableCars.get(helper).getMark(), gamer,availableCars.get(helper).getPrice()*1.02, 0);
             availableCars.remove(helper);
             System.out.println("Kupiłeś samochód");
         }

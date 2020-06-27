@@ -11,7 +11,8 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Base {
-    public void Menu(Generator carGenerator, Gamer gamer, BuyerCreator buyerCreator, Mechanic janusz, Mechanic mariusz, Mechanic adrain){
+    public void Menu(Generator carGenerator, Gamer gamer, BuyerCreator buyerCreator, Mechanic janusz,
+                     Mechanic mariusz, Mechanic adrain, TransactionGenerator transactionGenerator){
         System.out.println("Menu:");
         System.out.println("1. Auta do Kupienia");
         System.out.println("2. Zobacz Swoje Auta");
@@ -24,12 +25,13 @@ public class Base {
         System.out.println("9. Historia Napraw Samochodu");
         System.out.println("10. Suma Napraw i Mycia Aut");
         System.out.println("Wybierz opcję od 1 do 10: ");
-        ChoiceMenu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrain);
+        ChoiceMenu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrain, transactionGenerator);
     }
     public void Welcome(){
         System.out.println("Witam w Symulatorze Handlarza Aut");
     }
-    public void ChoiceMenu(Generator carGenerator, Gamer gamer, BuyerCreator buyerCreator, Mechanic janusz, Mechanic mariusz, Mechanic adrian){
+    public void ChoiceMenu(Generator carGenerator, Gamer gamer, BuyerCreator buyerCreator, Mechanic janusz, Mechanic mariusz,
+                           Mechanic adrian, TransactionGenerator transactionGenerator){
         switch (Listen()){
             case 1:
                 carGenerator.DisplayCars();
@@ -37,7 +39,7 @@ public class Base {
                 int helper = Listen();
                 if(helper<10)
                     {
-                    carGenerator.ChangeOwner(gamer, helper);
+                    carGenerator.ChangeOwner(gamer, helper, transactionGenerator);
                     carGenerator.Generate();
                     carGenerator.SortCars();
                     gamer.SortCars();
@@ -114,6 +116,8 @@ public class Base {
                 wait4key();
                 break;
             case 8:
+                transactionGenerator.DisplayTransaction();
+                wait4key();
                 break;
             case 9:
                 break;
