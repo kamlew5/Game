@@ -108,16 +108,39 @@ public class Base {
                     wait4key();
                 break;
             case 5:
-                System.out.println("Wybierz samochód do sprzedania");
-                for(int i = 0; i<gamer.garage.size(); i++){
-                    gamer.garage.get(i).getText();
-                }
+                gamer.DisplayGarage();
                 int a = Listen();
                 a--;
-                for(int j = 0; j<buyerCreator.buyers.size(); j++){
-                    if(buyerCreator.buyers.get(j).equals(gamer.garage.get(a).getMark())){
-                        buyerCreator.buyers.get(j).toString();
+                buyerCreator.DisplayBuyers();
+                System.out.println("Wybierz kupca:");
+
+                if(buyerCreator.buyers.get(Listen()).InterestedCar.equals(gamer.garage.get(a).getMark())){
+                    if(gamer.garage.get(a).brokeCarSuspension == 0 &&
+                            gamer.garage.get(a).brokeCarBody == 0 &&
+                            gamer.garage.get(a).brokeGearBox == 0 &&
+                            gamer.garage.get(a).brokeEngine == 0 &&
+                            gamer.garage.get(a).brokeBrakes == 0){
+                        gamer.cash += gamer.garage.get(a).price * 0.98;
+                        System.out.println("Sprzedałeś: "+gamer.garage.get(a).getMark()+" za: "+gamer.garage.get(a).price*0.98);
+                        gamer.garage.remove(a);
+                        gamer.SortCars();
+                        transactionGenerator.Generate(gamer.garage.get(a).getMark(),gamer, gamer.garage.get(a).price,1);
+                }
+                    else{
+                        if(ThreadLocalRandom.current().nextInt(0,100 )>95){
+                            System.out.println("Udało się go sprzedać nie naprawionym");
+                            gamer.cash += gamer.garage.get(a).price * 0.98;
+                            System.out.println("Sprzedałeś: "+gamer.garage.get(a).getMark()+" za: "+gamer.garage.get(a).price*0.98);
+                            gamer.garage.remove(a);
+                            gamer.SortCars();
+                            transactionGenerator.Generate(gamer.garage.get(a).getMark(),gamer, gamer.garage.get(a).price,1);
+                        }
+                        else
+                            System.out.println("Musisz go najpierw uszykować, by go sprzedać!");
                     }
+                }
+                else{
+                    System.out.println("On tego nie chce...");
                 }
                 break;
             case 6:
