@@ -1,9 +1,17 @@
 package com.company.Human;
 
-public class Buyer extends Human {
+public class Buyer{
+    public String name;
     private String InterestedCar;
+
+
     public Buyer(String name, String InterestedCar) {
-        super(name);
-        this.InterestedCar = InterestedCar;
+            this.name = name;
+            this.InterestedCar = InterestedCar;
+    }
+
+    @Override
+    public String toString() {
+        return name + " chce " + InterestedCar;
     }
 }

@@ -18,19 +18,44 @@ public class Mechanic {
     public void Repair(Car car, int helper, Gamer gamer) {
         switch (helper){
             case 1:
-                car.brokeEngine = checkCash(car, gamer, car.priceEngine, 1);
+                if(car.brokeEngine==0)
+                    System.out.println("Przecież nie jest popsute");
+                else{
+                    car.brokeEngine = checkCash(car, gamer, car.priceEngine, 1);
+                    car.price *=2;
+                }
                 break;
             case 2:
-                car.brokeBrakes = checkCash(car, gamer, car.priceBrakes, 2);
+                if(car.brokeBrakes==0)
+                    System.out.println("Przecież nie jest popsute");
+                else{
+                    car.brokeBrakes = checkCash(car, gamer, car.priceBrakes, 2);
+                    car.price*=1.1;
+                }
                 break;
             case 3:
-                car.brokeGearBox = checkCash(car, gamer, car.priceGearBox, 3);
+                if(car.brokeGearBox==0)
+                    System.out.println("Przecież nie jest popsute");
+                else{
+                    car.brokeGearBox = checkCash(car, gamer, car.priceGearBox, 3);
+                    car.price*=1.5;
+                }
                 break;
             case 4:
-                car.brokeCarBody = checkCash(car, gamer, car.priceCarBody, 4);
+                if(car.brokeCarBody==0)
+                    System.out.println("Przecież nie jest popsute");
+                else{
+                    car.brokeCarBody = checkCash(car, gamer, car.priceCarBody, 4);
+                    car.price*=1.5;
+                }
                 break;
             case 5:
-                car.brokeCarSuspension = checkCash(car, gamer, car.priceCarSuspension, 5);
+                if(car.brokeCarSuspension==0)
+                    System.out.println("Przecież nie jest popsute");
+                else{
+                    car.brokeCarSuspension = checkCash(car, gamer, car.priceCarSuspension, 5);
+                    car.price*=1.2;
+                }
                 break;
             default:
                 break;
@@ -43,6 +68,7 @@ public class Mechanic {
         }
         else{
             gamer.cash -=pricePart*this.price;
+            gamer.costs =pricePart*this.price;
             subBroke(car, helper);
             return subRepair();
         }

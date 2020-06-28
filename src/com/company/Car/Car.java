@@ -1,5 +1,7 @@
 package com.company.Car;
 
+import com.company.Human.Gamer;
+
 public class Car {
     private String mark, color, segment;
     public Integer course, brokeEngine, brokeBrakes, brokeGearBox, brokeCarBody, brokeCarSuspension;
@@ -30,11 +32,13 @@ public class Car {
     public Double getPrice() {
         return price;
     }
-    public String getProcent(){
-        return ((100-(this.brokeCarSuspension+this.brokeCarBody+this.brokeGearBox+this.brokeEngine+this.brokeBrakes)*20))+"%";
-    }
-    private void WashCar(){
-        System.out.println("Wash, Wash!");
+//    public String getProcent(){
+//        return ((100-(this.brokeCarSuspension+this.brokeCarBody+this.brokeGearBox+this.brokeEngine+this.brokeBrakes)*20))+"%";
+//    }
+    private void WashCar(Gamer gamer){
+        System.out.println("Myju, Myju!");
+        gamer.cash -= 100.0;
+        gamer.costs += 100.0;
     }
 
     public String diplayBrokes(){
@@ -60,10 +64,10 @@ public class Car {
         else
             a4 = "Karoseria - cała, ";
         if(this.brokeCarSuspension==1){
-            a5 = "Zawieszenie - posute";
+            a5 = " Zawieszenie - posute";
         }
         else
-            a5 = "Zawieszenie - sprawne";
+            a5 = " Zawieszenie - sprawne";
         return a1+a2+a3+a4+a5;
     }
 

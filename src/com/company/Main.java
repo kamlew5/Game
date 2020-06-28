@@ -1,6 +1,5 @@
 package com.company;
 
-
 import com.company.Car.Generator;
 import com.company.Game_Interface.Base;
 import com.company.Game_Interface.TransactionGenerator;
@@ -8,9 +7,6 @@ import com.company.Human.BuyerCreator;
 import com.company.Human.Gamer;
 import com.company.Human.GamerCreator;
 import com.company.Human.Mechanic;
-import com.company.Car.Generator;
-
-import java.util.Scanner;
 
 public class Main {
 
@@ -43,11 +39,10 @@ public class Main {
         //Do zrobienia:
         //Sprzedaż samochodów
         //Dodawanie Transakcji
-        //Historia Transakcji
         //Historia Napraw Samochodów
-        //Suma kosztów napraw i myć
+        //Suma kosztów napraw i myć (dodać mycie)
         //Samochody dostawcze
-        //Liczby tur
+        //Liczba tur
         //Zakończenie
         //Poprawienie działania programu (wywalić nie potrzebne)
         //Dodatkowe rzeczy:

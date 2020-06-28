@@ -6,16 +6,18 @@ import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static java.lang.Math.*;
+
 public class Generator{
     //Stringi do losowania podczas tworzenia aut
-    private String[] carMarks = {"Saab 9.3", "Wieśwagen Passat", "Fiat Punto", "Mercedes AMG GT",
+    private String[] carMarks = {"Saab 9.3", "Wieśwagen Pastuch", "Fiat Punto", "Mercedes AMG GT",
             "BMW 3", "Kia Stringer", "Seat Ibiza", "Mitsubishi Galant"};
     private String[] carColor = {"Różowy", "Czerwony", "Turkusowy", "WTF! Co to za kolor!", "Niebieski", "Zielony", "Jakiś"};
     private String[] carSegment = {"Mini", "Small", "Medium", "Large", "Exectutive", "Luxury", "Sport"};
     //Lista aut dostępnych do kupienia
     public ArrayList<Car> availableCars = new ArrayList<>();
     //Double z określoną ilością licz po przecinku
-    private DecimalFormat df = new DecimalFormat("#.#");
+    private DecimalFormat df = new DecimalFormat("#######.##");
 
     //Funkcja do generowania zmiennych aut
     private String CarGenerator(String[] generateValue) {
@@ -53,22 +55,22 @@ public class Generator{
         }
         switch (type){
             case 1:
-                secondlitlehelper = 700.0;
+                secondlitlehelper = 1000.0;
             break;
             case 2:
-                secondlitlehelper = 500.0;
-            break;
-            case 3:
-                secondlitlehelper = 600.0;
-            break;
-            case 4:
                 secondlitlehelper = 400.0;
             break;
+            case 3:
+                secondlitlehelper = 750.0;
+            break;
+            case 4:
+                secondlitlehelper = 700.0;
+            break;
             case 5:
-                secondlitlehelper = 550.0;
+                secondlitlehelper = 500.0;
             break;
             default:
-                secondlitlehelper = 1000.0;
+                secondlitlehelper = 2000.0;
             break;
         }
         return litlehelper*secondlitlehelper;
@@ -96,18 +98,18 @@ public class Generator{
                 litlehelper = 1.0;
                 break;
         }
-        return litlehelper*5000;
+        return litlehelper*10000;
     }
     //tworzy auta
     public void Generate(){
         String a1 = CarGenerator(carMarks);
         String a2 = CarGenerator(carColor);
         String a3 = CarGenerator(carSegment);
-        Integer b1 = CreateDefect();
-        Integer b2 = CreateDefect();
-        Integer b3 = CreateDefect();
-        Integer b4 = CreateDefect();
-        Integer b5 = CreateDefect();
+        Integer b1 = CreateDefect();//silnik 2
+        Integer b2 = CreateDefect();//hamulce 1.1
+        Integer b3 = CreateDefect();//skrzynia 1.5
+        Integer b4 = CreateDefect();//Karoseria 1.5
+        Integer b5 = CreateDefect();//Zawieszenie 1.2
         Double c1 = CreatePrice(a1,1);
         Double c2 = CreatePrice(a1,2);
         Double c3 = CreatePrice(a1,3);
@@ -117,13 +119,18 @@ public class Generator{
         int carCourse = ThreadLocalRandom.current().nextInt(10000, 99999);
         //zmienić na cenę zależną od przebiegu
         Double p1 = CreatePrice(a1);
+        if(b1==1) p1 -= p1 * 0.5;
+        if(b2==1) p1 -= p1 * 0.9;
+        if(b3==1) p1 -= p1 * 0.67;
+        if(b4==1) p1 -= p1 * 0.67;
+        if(b5==1) p1 -= p1 * 0.8;
+        p1 = (double) (round(p1 * 100) / 100);
         availableCars.add(new Car(a1,a2,a3,carCourse,b1,c1,b2,c2,b3,c3,b4,c4,b5,c5,p1));
-
     }
     //wyświetla podstawowe rzeczy o zakupie auta
     public void DisplayCars(){
         for (int i = 0; i < availableCars.size(); i++) {
-            System.out.println(i+1+" "+availableCars.get(i).toString());
+            System.out.println(i+1+" "+availableCars.get(i).Display());
         }
     }
     //sortuje autka

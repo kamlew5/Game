@@ -1,5 +1,6 @@
 package com.company.Game_Interface;
 
+import com.company.Car.Car;
 import com.company.Car.Generator;
 import com.company.Human.BuyerCreator;
 import com.company.Human.Gamer;
@@ -77,21 +78,24 @@ public class Base {
                                 "5. Zawieszenie ");
                         Integer choiceRepair = Listen();
                         System.out.println("Wybierz mechanika: \n" +
-                                "1. Janusz - \"ŁO PANIE! Kto Panu tak Spierd***ł!?\" cena:"+choiceRepair*janusz.price+"\n" +
-                                "2. Mariusz - \"Andrzeju nie denerwuj się...\""+choiceRepair*mariusz.price+"\n" +
-                                "3. Adrian - \"To się wyklepie\""+choiceRepair*adrian.price);
+                                "1. Janusz - \"ŁO PANIE! Kto Panu tak Spierd***ł!?\" cena: "+choiceHelper(choiceRepair, gamer.garage.get(lcas3))*janusz.price+"\n" +
+                                "2. Mariusz - \"Andrzeju nie denerwuj się...\" cena: "+choiceHelper(choiceRepair, gamer.garage.get(lcas3))*mariusz.price+"\n" +
+                                "3. Adrian - \"To się wyklepie\" cena: "+choiceHelper(choiceRepair, gamer.garage.get(lcas3))*adrian.price);
                         switch (Listen()){
                             case 1:
                                 System.out.println("Wybrano Janusza");
                                 janusz.Repair(gamer.garage.get(lcas3),choiceRepair, gamer);
+                                wait4key();
                                 break;
                             case 2:
                                 System.out.println("Wybrano Mariusza");
                                 mariusz.Repair(gamer.garage.get(lcas3),choiceRepair, gamer);
+                                wait4key();
                                 break;
                             case 3:
                                 System.out.println("Wybrano Adriana");
                                 adrian.Repair(gamer.garage.get(lcas3),choiceRepair, gamer);
+                                wait4key();
                                 break;
                             default:
                                 System.out.println("Nie ma takiej opcji");
@@ -101,11 +105,19 @@ public class Base {
                 break;
             case 4:
                     buyerCreator.DisplayBuyers();
+                    wait4key();
                 break;
             case 5:
                 System.out.println("Wybierz samochód do sprzedania");
                 for(int i = 0; i<gamer.garage.size(); i++){
                     gamer.garage.get(i).getText();
+                }
+                int a = Listen();
+                a--;
+                for(int j = 0; j<buyerCreator.buyers.size(); j++){
+                    if(buyerCreator.buyers.get(j).equals(gamer.garage.get(a).getMark())){
+                        buyerCreator.buyers.get(j).toString();
+                    }
                 }
                 break;
             case 6:
@@ -166,6 +178,22 @@ public class Base {
             System.in.read();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public Double choiceHelper(Integer v, Car car){
+        switch (v){
+            case 1:
+                return car.priceEngine;
+            case 2:
+                return car.priceBrakes;
+            case 3:
+                return car.priceGearBox;
+            case 4:
+                return car.priceCarBody;
+            case 5:
+                return car.priceCarSuspension;
+            default:
+                return 0.0;
         }
     }
 }

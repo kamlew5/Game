@@ -17,13 +17,13 @@ public class Transaction {
     @Override
     public String toString() {
         if(typeTransaction==0) {
-            return "Gracz: " + gamerName + '\n' +
-                    "Kupił: " + carName  +
+            return "Gracz: " + gamerName +
+                    " Kupił: " + carName  +
                     " Za: " + cash;
         }
         else{
-            return "Gracz: " + gamerName + '\n' +
-                    "Sprzedał: " + carName +
+            return "Gracz: " + gamerName +
+                    " Sprzedał: " + carName +
                     " Za: " + cash;
         }
     }
