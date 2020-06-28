@@ -5,7 +5,6 @@ import com.company.Car.Generator;
 import com.company.Car.RepairGenerator;
 import com.company.Human.BuyerCreator;
 import com.company.Human.Gamer;
-import com.company.Human.GamerCreator;
 import com.company.Human.Mechanic;
 
 import java.io.IOException;
@@ -13,6 +12,7 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Base {
+    public Integer nrTurn = 0;
     public void Menu(Generator carGenerator, Gamer gamer, BuyerCreator buyerCreator, Mechanic janusz,
                      Mechanic mariusz, Mechanic adrain, TransactionGenerator transactionGenerator,
                      RepairGenerator repairGenerator){
@@ -46,6 +46,7 @@ public class Base {
                     carGenerator.Generate();
                     carGenerator.SortCars();
                     gamer.SortCars();
+                    addTurn();
                     System.out.println("Naciśnij przycisk, by kontynuować");
                     wait4key();
                 }
@@ -61,6 +62,7 @@ public class Base {
                 int ba = Listen() - 1;
                 if(ba < gamer.garage.size()){
                     gamer.garage.get(ba).WashCar(gamer);
+                    addTurn();
                 }
                 break;
             case 3:
@@ -92,16 +94,19 @@ public class Base {
                             case 1:
                                 System.out.println("Wybrano Janusza");
                                 janusz.Repair(gamer.garage.get(lcas3),choiceRepair, gamer, repairGenerator);
+                                addTurn();
                                 wait4key();
                                 break;
                             case 2:
                                 System.out.println("Wybrano Mariusza");
                                 mariusz.Repair(gamer.garage.get(lcas3),choiceRepair, gamer, repairGenerator);
+                                addTurn();
                                 wait4key();
                                 break;
                             case 3:
                                 System.out.println("Wybrano Adriana");
                                 adrian.Repair(gamer.garage.get(lcas3),choiceRepair, gamer, repairGenerator);
+                                addTurn();
                                 wait4key();
                                 break;
                             default:
@@ -133,6 +138,7 @@ public class Base {
                         gamer.garage.remove(a);
                         gamer.SortCars();
                         transactionGenerator.Generate(gamer.garage.get(a).getMark(),gamer, gamer.garage.get(a).price,1);
+                        addTurn();
                 }
                     else{
                         if(ThreadLocalRandom.current().nextInt(0,100 )>95){
@@ -142,6 +148,7 @@ public class Base {
                             gamer.garage.remove(a);
                             gamer.SortCars();
                             transactionGenerator.Generate(gamer.garage.get(a).getMark(),gamer, gamer.garage.get(a).price,1);
+                            addTurn();
                         }
                         else
                             System.out.println("Musisz go najpierw uszykować, by go sprzedać!");
@@ -153,6 +160,7 @@ public class Base {
                 break;
             case 6:
                 buyAd(gamer, buyerCreator);
+                addTurn();
                 break;
             case 7:
                 System.out.println("Masz na koncie: "+gamer.cash);
@@ -228,5 +236,11 @@ public class Base {
             default:
                 return 0.0;
         }
+    }
+    public void addTurn(){
+        nrTurn++;
+    }
+    public String returnTurn(){
+        return "Wygrałeś w " + nrTurn + " tur.";
     }
 }
