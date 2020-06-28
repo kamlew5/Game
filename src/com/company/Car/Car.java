@@ -2,12 +2,35 @@ package com.company.Car;
 
 import com.company.Human.Gamer;
 
+import javax.lang.model.type.NullType;
+
 public class Car {
     private String mark, color, segment;
     public Integer course, brokeEngine, brokeBrakes, brokeGearBox, brokeCarBody, brokeCarSuspension;
     public Double priceEngine, priceBrakes, priceGearBox, priceCarBody, priceCarSuspension, price;
+    public Integer loadingSpace = 0;
     public Integer washed = 0;
 
+    public Car(String mark, String color, String segment, Integer course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
+               Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody,
+               Integer brokeCarSuspension, Double priceCarSuspension, Double price, Integer loadingSpace) {
+        this.mark = mark;
+        this.color = color;
+        this.segment = segment;
+        this.course = course;
+        this.brokeEngine = brokeEngine;
+        this.priceEngine = priceEngine;
+        this.brokeBrakes = brokeBrakes;
+        this.priceBrakes = priceBrakes;
+        this.brokeGearBox = brokeGearBox;
+        this.priceGearBox = priceGearBox;
+        this.brokeCarBody = brokeCarBody;
+        this.priceCarBody = priceCarBody;
+        this.brokeCarSuspension = brokeCarSuspension;
+        this.priceCarSuspension = priceCarSuspension;
+        this.price = price;
+        this.loadingSpace = loadingSpace;
+    }
     public Car(String mark, String color, String segment, Integer course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
                Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody,
                Integer brokeCarSuspension, Double priceCarSuspension, Double price) {
@@ -33,9 +56,6 @@ public class Car {
     public Double getPrice() {
         return price;
     }
-//    public String getProcent(){
-//        return ((100-(this.brokeCarSuspension+this.brokeCarBody+this.brokeGearBox+this.brokeEngine+this.brokeBrakes)*20))+"%";
-//    }
     public void WashCar(Gamer gamer){
         if(this.washed == 1){
             System.out.println("Jest już umyty");
@@ -77,21 +97,14 @@ public class Car {
             a5 = " Zawieszenie - sprawne";
         return a1+a2+a3+a4+a5;
     }
-
-    public String getText(){
-        return mark+", "+
-                segment+", "+
-                color+", "+
-                course+", "+
-                price+", "+
-                ((100-(this.brokeCarSuspension+this.brokeCarBody+this.brokeGearBox+this.brokeEngine+this.brokeBrakes)*20))+"%";
-    }
     public String Display(){
         return mark+", "+
                 segment+", "+
                 color+", "+
                 course+", "+
-                price+", " +
+                price+" PLN, " +
+                loadingif() +
+                "\n \t"+
                 washedif()+", "+
                 diplayBrokes();
     }
@@ -105,8 +118,15 @@ public class Car {
     }
     public String washedif(){
         if(washed==1)
-            return "umyty";
+            return "Umyty";
         else
-            return "trzeba umyć";
+            return "Trzeba umyć";
+    }
+    public String loadingif(){
+        if(this.loadingSpace != 0){
+            return "może przewieźć: " + loadingSpace + ", ";
+        }
+        else
+            return "";
     }
 }

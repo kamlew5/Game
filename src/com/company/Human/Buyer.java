@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Buyer{
     public String name;
-    public Integer ifTruck;
     public String interestedCar1;
     public String interestedCar2;
 

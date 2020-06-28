@@ -38,7 +38,7 @@ public class Base {
         switch (Listen()){
             case 1:
                 carGenerator.DisplayCars();
-                System.out.println("Wybierz numer od 1 do 10, by kupić auto, pozostałem by wyjść do menu");
+                System.out.println("Wybierz numer od 1 do 10, by kupić auto, pozostałe by wyjść do menu");
                 int helper = Listen();
                 if(helper<10)
                     {
@@ -54,15 +54,16 @@ public class Base {
             case 2:
                 if(gamer.garage.size()<=0)
                     System.out.println("Nie masz nic w garażu");
-                else
+                else{
                     gamer.ShowCars();
-                System.out.println("Wybierz samochód od 1 do "
-                        +(gamer.garage.size())+
-                        ", aby je umyć lub wybierz poza skalą, by wyjść");
-                int ba = Listen() - 1;
-                if(ba < gamer.garage.size()){
-                    gamer.garage.get(ba).WashCar(gamer);
-                    addTurn();
+                    System.out.println("Wybierz samochód od 1 do "
+                            +(gamer.garage.size())+
+                            ", aby je umyć lub wybierz poza skalą, by wyjść");
+                    int ba = Listen() - 1;
+                    if(ba < gamer.garage.size()){
+                        gamer.garage.get(ba).WashCar(gamer);
+                        addTurn();
+                        }
                 }
                 break;
             case 3:
@@ -132,7 +133,8 @@ public class Base {
                             gamer.garage.get(a).brokeCarBody == 0 &&
                             gamer.garage.get(a).brokeGearBox == 0 &&
                             gamer.garage.get(a).brokeEngine == 0 &&
-                            gamer.garage.get(a).brokeBrakes == 0){
+                            gamer.garage.get(a).brokeBrakes == 0 &&
+                            gamer.garage.get(a).washed == 1){
                         gamer.cash += gamer.garage.get(a).price * 0.98;
                         System.out.println("Sprzedałeś: "+gamer.garage.get(a).getMark()+" za: "+gamer.garage.get(a).price*0.98);
                         gamer.garage.remove(a);

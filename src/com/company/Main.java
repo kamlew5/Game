@@ -39,9 +39,7 @@ public class Main {
         while (gamer.cash<20000.0)
             base.Menu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrian, transactionGenerator, repairGenerator);
         //Do zrobienia:
-        //Samochody dostawcze
         //Klient ma określoną liczbę kasy
-        //Interesują go dwie marki aut
         //Liczba tur
         //Zakończenie
         //Poprawienie działania programu (wywalić nie potrzebne)
