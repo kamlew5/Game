@@ -15,6 +15,9 @@ public class Mechanic {
         this.ChanceBroke = chanceBroke;
         this.price = price;
     }
+    public String getName() {
+        return name;
+    }
     public void Repair(Car car, int helper, Gamer gamer) {
         switch (helper){
             case 1:
