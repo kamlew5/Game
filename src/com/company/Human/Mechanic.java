@@ -1,5 +1,6 @@
 package com.company.Human;
 import com.company.Car.Car;
+import com.company.Car.RepairGenerator;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -18,7 +19,7 @@ public class Mechanic {
     public String getName() {
         return name;
     }
-    public void Repair(Car car, int helper, Gamer gamer) {
+    public void Repair(Car car, int helper, Gamer gamer, RepairGenerator repairGenerator) {
         switch (helper){
             case 1:
                 if(car.brokeEngine==0)
@@ -26,6 +27,7 @@ public class Mechanic {
                 else{
                     car.brokeEngine = checkCash(car, gamer, car.priceEngine, 1);
                     car.price *=2;
+                    repairGenerator.Generate(car, gamer, helper, car.priceEngine, this);
                 }
                 break;
             case 2:
@@ -34,6 +36,7 @@ public class Mechanic {
                 else{
                     car.brokeBrakes = checkCash(car, gamer, car.priceBrakes, 2);
                     car.price*=1.1;
+                    repairGenerator.Generate(car, gamer, helper, car.priceEngine, this);
                 }
                 break;
             case 3:
@@ -42,6 +45,7 @@ public class Mechanic {
                 else{
                     car.brokeGearBox = checkCash(car, gamer, car.priceGearBox, 3);
                     car.price*=1.5;
+                    repairGenerator.Generate(car, gamer, helper, car.priceEngine, this);
                 }
                 break;
             case 4:
@@ -50,6 +54,7 @@ public class Mechanic {
                 else{
                     car.brokeCarBody = checkCash(car, gamer, car.priceCarBody, 4);
                     car.price*=1.5;
+                    repairGenerator.Generate(car, gamer, helper, car.priceEngine, this);
                 }
                 break;
             case 5:
@@ -58,6 +63,7 @@ public class Mechanic {
                 else{
                     car.brokeCarSuspension = checkCash(car, gamer, car.priceCarSuspension, 5);
                     car.price*=1.2;
+                    repairGenerator.Generate(car, gamer, helper, car.priceEngine, this);
                 }
                 break;
             default:

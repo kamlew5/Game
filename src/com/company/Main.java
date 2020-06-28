@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.Car.Generator;
+import com.company.Car.RepairGenerator;
 import com.company.Game_Interface.Base;
 import com.company.Game_Interface.TransactionGenerator;
 import com.company.Human.BuyerCreator;
@@ -19,6 +20,7 @@ public class Main {
         Generator carGenerator = new Generator();
         BuyerCreator buyerCreator = new BuyerCreator();
         TransactionGenerator transactionGenerator = new TransactionGenerator();
+        RepairGenerator repairGenerator = new RepairGenerator();
         //GamerCreator gamerCreator = new GamerCreator();
         Base base = new Base();
         //Stworzenie 10 samochodó i 10 klientów
@@ -35,11 +37,8 @@ public class Main {
         Gamer gamer = new Gamer("Janusz");
         //Uruchomienie menu
         while (gamer.cash<20000.0)
-            base.Menu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrian, transactionGenerator);
+            base.Menu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrian, transactionGenerator, repairGenerator);
         //Do zrobienia:
-        //Sprzedaż samochodów
-        //Dodawanie Transakcji
-        //Historia Napraw Samochodów
         //Suma kosztów napraw i myć (dodać mycie)
         //Samochody dostawcze
         //Liczba tur

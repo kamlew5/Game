@@ -2,6 +2,7 @@ package com.company.Game_Interface;
 
 import com.company.Car.Car;
 import com.company.Car.Generator;
+import com.company.Car.RepairGenerator;
 import com.company.Human.BuyerCreator;
 import com.company.Human.Gamer;
 import com.company.Human.GamerCreator;
@@ -13,26 +14,27 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Base {
     public void Menu(Generator carGenerator, Gamer gamer, BuyerCreator buyerCreator, Mechanic janusz,
-                     Mechanic mariusz, Mechanic adrain, TransactionGenerator transactionGenerator){
+                     Mechanic mariusz, Mechanic adrain, TransactionGenerator transactionGenerator,
+                     RepairGenerator repairGenerator){
         System.out.println("Menu:");
         System.out.println("1. Auta do Kupienia");
-        System.out.println("2. Zobacz Swoje Auta");
+        System.out.println("2. Zobacz Swoje Auta i umyj je");
         System.out.println("3. Napraw Samochód");
         System.out.println("4. Sprawdź Klientów");
         System.out.println("5. Sprzedaj Samochód");
         System.out.println("6. Kup Reklamę");
         System.out.println("7. Stan Konta");
         System.out.println("8. Historia Transakcji");
-        System.out.println("9. Historia Napraw Samochodu");
+        System.out.println("9. Historia Napraw Samochodów");
         System.out.println("10. Suma Napraw i Mycia Aut");
         System.out.println("Wybierz opcję od 1 do 10: ");
-        ChoiceMenu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrain, transactionGenerator);
+        ChoiceMenu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrain, transactionGenerator, repairGenerator);
     }
     public void Welcome(){
         System.out.println("Witam w Symulatorze Handlarza Aut");
     }
     public void ChoiceMenu(Generator carGenerator, Gamer gamer, BuyerCreator buyerCreator, Mechanic janusz, Mechanic mariusz,
-                           Mechanic adrian, TransactionGenerator transactionGenerator){
+                           Mechanic adrian, TransactionGenerator transactionGenerator, RepairGenerator repairGenerator){
         switch (Listen()){
             case 1:
                 carGenerator.DisplayCars();
@@ -84,17 +86,17 @@ public class Base {
                         switch (Listen()){
                             case 1:
                                 System.out.println("Wybrano Janusza");
-                                janusz.Repair(gamer.garage.get(lcas3),choiceRepair, gamer);
+                                janusz.Repair(gamer.garage.get(lcas3),choiceRepair, gamer, repairGenerator);
                                 wait4key();
                                 break;
                             case 2:
                                 System.out.println("Wybrano Mariusza");
-                                mariusz.Repair(gamer.garage.get(lcas3),choiceRepair, gamer);
+                                mariusz.Repair(gamer.garage.get(lcas3),choiceRepair, gamer, repairGenerator);
                                 wait4key();
                                 break;
                             case 3:
                                 System.out.println("Wybrano Adriana");
-                                adrian.Repair(gamer.garage.get(lcas3),choiceRepair, gamer);
+                                adrian.Repair(gamer.garage.get(lcas3),choiceRepair, gamer, repairGenerator);
                                 wait4key();
                                 break;
                             default:
@@ -155,6 +157,8 @@ public class Base {
                 wait4key();
                 break;
             case 9:
+                repairGenerator.DisplayRepairs();
+                wait4key();
                 break;
             case 10:
                 System.out.println("Wydałeś już: "+gamer.costs);
