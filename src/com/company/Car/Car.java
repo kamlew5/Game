@@ -6,6 +6,7 @@ public class Car {
     private String mark, color, segment;
     public Integer course, brokeEngine, brokeBrakes, brokeGearBox, brokeCarBody, brokeCarSuspension;
     public Double priceEngine, priceBrakes, priceGearBox, priceCarBody, priceCarSuspension, price;
+    public Integer washed = 0;
 
     public Car(String mark, String color, String segment, Integer course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
                Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody,
@@ -35,10 +36,16 @@ public class Car {
 //    public String getProcent(){
 //        return ((100-(this.brokeCarSuspension+this.brokeCarBody+this.brokeGearBox+this.brokeEngine+this.brokeBrakes)*20))+"%";
 //    }
-    private void WashCar(Gamer gamer){
-        System.out.println("Myju, Myju!");
-        gamer.cash -= 100.0;
-        gamer.costs += 100.0;
+    public void WashCar(Gamer gamer){
+        if(this.washed == 1){
+            System.out.println("Jest już umyty");
+        }
+        else {
+            this.washed = 1;
+            System.out.println("Myju, Myju!");
+            gamer.cash -= 100.0;
+            gamer.costs += 100.0;
+        }
     }
 
     public String diplayBrokes(){
@@ -84,7 +91,9 @@ public class Car {
                 segment+", "+
                 color+", "+
                 course+", "+
-                price+", "+ diplayBrokes();
+                price+", " +
+                washedif()+", "+
+                diplayBrokes();
     }
     @Override
     public String toString() {
@@ -93,5 +102,11 @@ public class Car {
                 ", Segment='" + segment + '\'' +
                 ", Przebieg=" + course +
                 ", Cena=" + price;
+    }
+    public String washedif(){
+        if(washed==1)
+            return "umyty";
+        else
+            return "trzeba umyć";
     }
 }

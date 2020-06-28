@@ -15,7 +15,12 @@ public class BuyerCreator {
         return(generateValue[randomNumber]);
     }
     public void Create(){
-        buyers.add(new Buyer(HelperCreator(buyersNames),HelperCreator(carMarks)));
+        String helper1 = HelperCreator(carMarks);
+        String helper2 = HelperCreator(carMarks);
+        while (helper2.equals(helper1)) {
+            helper2 = HelperCreator(carMarks);
+        }
+        buyers.add(new Buyer(HelperCreator(buyersNames), helper1, helper2));
     }
     public void DisplayBuyers(){
         for (int i = 0; i < buyers.size(); i++) {

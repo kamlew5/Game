@@ -16,18 +16,18 @@ public class Base {
     public void Menu(Generator carGenerator, Gamer gamer, BuyerCreator buyerCreator, Mechanic janusz,
                      Mechanic mariusz, Mechanic adrain, TransactionGenerator transactionGenerator,
                      RepairGenerator repairGenerator){
-        System.out.println("Menu:");
-        System.out.println("1. Auta do Kupienia");
-        System.out.println("2. Zobacz Swoje Auta i umyj je");
-        System.out.println("3. Napraw Samochód");
-        System.out.println("4. Sprawdź Klientów");
-        System.out.println("5. Sprzedaj Samochód");
-        System.out.println("6. Kup Reklamę");
-        System.out.println("7. Stan Konta");
-        System.out.println("8. Historia Transakcji");
-        System.out.println("9. Historia Napraw Samochodów");
-        System.out.println("10. Suma Napraw i Mycia Aut");
-        System.out.println("Wybierz opcję od 1 do 10: ");
+        System.out.println("Menu: \n" +
+                "1. Auta do Kupienia \n" +
+                "2. Zobacz Swoje Auta i umyj je\n" +
+                "3. Napraw Samochód\n" +
+                "4. Sprawdź Klientów\n" +
+                "5. Sprzedaj Samochód\n" +
+                "6. Kup Reklamę\n" +
+                "7. Stan Konta\n" +
+                "8. Historia Transakcji\n" +
+                "9. Historia Napraw Samochodów\n" +
+                "10. Suma Napraw i Mycia Aut\n" +
+                "Wybierz opcję od 1 do 10: ");
         ChoiceMenu(carGenerator, gamer, buyerCreator, janusz, mariusz, adrain, transactionGenerator, repairGenerator);
     }
     public void Welcome(){
@@ -54,9 +54,14 @@ public class Base {
                 if(gamer.garage.size()<=0)
                     System.out.println("Nie masz nic w garażu");
                 else
-                    gamer.ShowCars2();
-                System.out.println("Naciśnij cokolwiek, by przejść dalej");
-                wait4key();
+                    gamer.ShowCars();
+                System.out.println("Wybierz samochód od 1 do "
+                        +(gamer.garage.size())+
+                        ", aby je umyć lub wybierz poza skalą, by wyjść");
+                int ba = Listen() - 1;
+                if(ba < gamer.garage.size()){
+                    gamer.garage.get(ba).WashCar(gamer);
+                }
                 break;
             case 3:
                 if(gamer.garage.size()<=0)
@@ -115,8 +120,9 @@ public class Base {
                 a--;
                 buyerCreator.DisplayBuyers();
                 System.out.println("Wybierz kupca:");
-
-                if(buyerCreator.buyers.get(Listen()).InterestedCar.equals(gamer.garage.get(a).getMark())){
+                int helperBuyers = Listen();
+                if(buyerCreator.buyers.get(helperBuyers).interestedCar1.equals(gamer.garage.get(a).getMark())||
+                buyerCreator.buyers.get(helperBuyers).interestedCar2.equals(gamer.garage.get(a).getMark())){
                     if(gamer.garage.get(a).brokeCarSuspension == 0 &&
                             gamer.garage.get(a).brokeCarBody == 0 &&
                             gamer.garage.get(a).brokeGearBox == 0 &&

@@ -10,24 +10,18 @@ public class Gamer{
     public Double cash = 10000.0;
     public Double costs = 0.0;
     public String name;
-    //dziedziczenie z klasy human
     public Gamer(String name) {
         this.name = name;
     }
 
-    //stara funkcja do wypisywania aut
     public void ShowCars(){
-        System.out.println(this.garage);
+        for(int i = 0; i < this.garage.size(); i++){
+            System.out.println(i+1+" "+this.garage.get(i).Display());
+        }
     }
     //sortuje auta
-    public void SortCars(){
+    public void SortCars() {
         garage.sort(Comparator.comparing(Car::getMark));
-    }
-    //poprawiona funkcja do wypisywania aut
-    public void ShowCars2(){
-        for (Car car : garage) {
-            System.out.println(car.getText());
-        }
     }
     public void DisplayGarage(){
         for (Car car : this.garage) {
