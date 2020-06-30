@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static java.lang.Math.*;
 
-public class Generator{
+public class CarGenerator {
     //Stringi do losowania podczas tworzenia aut
     private String[] carMarks = {"Saab 9.3", "Wieśwagen Pastuch", "Fiat Punto", "Mercedes AMG GT",
             "BMW 3", "Kia Stringer", "Seat Ibiza", "Mitsubishi Galant"};
@@ -80,6 +80,7 @@ public class Generator{
                 secondlitlehelper = 2000.0;
             break;
         }
+        //cena części zależna od marki
         return litlehelper*secondlitlehelper;
     }
     //cena auta zależna od marki
@@ -113,10 +114,12 @@ public class Generator{
                 litlehelper = 1.0;
                 break;
         }
-        return litlehelper*10000;
+        //standardowa cena * zależna od marki
+        return litlehelper*15000;
     }
     //tworzy auta
-    public void Generate(){
+    public void generate(){
+        //random do zmiennego tworzenia aut i dostawczaków
         if(ThreadLocalRandom.current().nextInt(0, 9)<8){
             String a1 = CarGenerator(carMarks);
             String a2 = CarGenerator(carColor);
@@ -133,16 +136,17 @@ public class Generator{
             Double c5 = CreatePrice(a1,5);
             //random z przebiegiem
             int carCourse = ThreadLocalRandom.current().nextInt(10000, 99999);
-            //zmienić na cenę zależną od przebiegu
+            //zmienia cenę na zależną uszkodzeń
             double p1 = CreatePrice(a1);
-            if(b1==1) p1 -= p1 * 0.5;
-            if(b2==1) p1 -= p1 * 0.9;
-            if(b3==1) p1 -= p1 * 0.67;
-            if(b4==1) p1 -= p1 * 0.67;
-            if(b5==1) p1 -= p1 * 0.8;
+            if(b1==1) p1 *= 0.5;
+            if(b2==1) p1 *= 0.9;
+            if(b3==1) p1 *= 0.67;
+            if(b4==1) p1 *= 0.67;
+            if(b5==1) p1 *= 0.8;
             p1 = (double) (round(p1 * 100) / 100);
             availableCars.add(new Car(a1,a2,a3,carCourse,b1,c1,b2,c2,b3,c3,b4,c4,b5,c5,p1));
         }
+        //tworzy dostawczaki
         else{
             String a1 = CarGenerator(truckMarks);
             String a2 = CarGenerator(carColor);
@@ -159,44 +163,50 @@ public class Generator{
             Double c5 = CreatePrice(a1,5);
             //random z przebiegiem
             int carCourse = ThreadLocalRandom.current().nextInt(10000, 99999);
+            //random z przestrzenią ładunkową
             int loadingSpace = ThreadLocalRandom.current().nextInt(1000, 1500);
-            //zmienić na cenę zależną od przebiegu
+            //zmienia cenę na zależną uszkodzeń
             double p1 = CreatePrice(a1);
-            if(b1==1) p1 -= p1 * 0.5;
-            if(b2==1) p1 -= p1 * 0.9;
-            if(b3==1) p1 -= p1 * 0.67;
-            if(b4==1) p1 -= p1 * 0.67;
-            if(b5==1) p1 -= p1 * 0.8;
+            if(b1==1) p1 *= 0.5;
+            if(b2==1) p1 *= 0.9;
+            if(b3==1) p1 *= 0.67;
+            if(b4==1) p1 *= 0.67;
+            if(b5==1) p1 *= 0.8;
             p1 = (double) (round(p1 * 100) / 100);
             availableCars.add(new Car(a1,a2,a3,carCourse,b1,c1,b2,c2,b3,c3,b4,c4,b5,c5,p1,loadingSpace));
         }
     }
     //wyświetla podstawowe rzeczy o zakupie auta
-    public void DisplayCars(){
+    public void displayCars(){
         for (int i = 0; i < availableCars.size(); i++) {
-            System.out.println(i+1+" "+availableCars.get(i).Display());
+            System.out.println(i+1+" "+availableCars.get(i).display());
         }
     }
     //sortuje autka
-    public void SortCars(){
+    public void sortCars(){
         availableCars.sort(Comparator.comparing(Car::getMark));
     }
     //zakup auta
-    public void ChangeOwner(Gamer gamer, int helper, TransactionGenerator transactionGenerator){
+    public Integer changeOwner(Gamer gamer, int helper, TransactionGenerator transactionGenerator){
         //odejmowanie o jeden by się zgadzały wartości z tablicą
         helper--;
         //sprawdza, czy nas stać na zakup + podatek
         if(gamer.cash<(availableCars.get(helper).getPrice()*1.02)){
             System.out.println("Za mało szmalu");
+            return 0;
         }
         else {
-            //przypisanie auta do gra
+            //przypisanie auta do gracza
             gamer.garage.add(availableCars.get(helper));
             //usunięcie kasy
             gamer.cash -= (availableCars.get(helper).getPrice()*1.02);
-            transactionGenerator.Generate(availableCars.get(helper).getMark(), gamer,availableCars.get(helper).getPrice()*1.02, 0);
+            transactionGenerator.generate(availableCars.get(helper).getMark(), gamer,availableCars.get(helper).getPrice()*1.02, 0);
             availableCars.remove(helper);
+            generate();
+            sortCars();
+            gamer.sortCars();
             System.out.println("Kupiłeś samochód");
+            return 1;
         }
     }
 }

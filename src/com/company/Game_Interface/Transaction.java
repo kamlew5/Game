@@ -14,6 +14,7 @@ public class Transaction {
         this.cash = cash;
         this.typeTransaction = typeTransaction;
     }
+    //toString zależny od tego czy kupił, czy sprzedał
     @Override
     public String toString() {
         if(typeTransaction==0) {

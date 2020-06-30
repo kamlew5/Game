@@ -4,11 +4,11 @@ import com.company.Human.Gamer;
 import com.company.Human.Mechanic;
 
 public class Repair {
-    public Car car;
-    public Gamer gamer;
-    public Integer whatRepair;
-    public Double price;
-    public Mechanic mechanic;
+    private Car car;
+    private Gamer gamer;
+    private Integer whatRepair;
+    private Double price;
+    private Mechanic mechanic;
 
     public Repair(Car car, Gamer gamer, Integer whatRepair, Double price, Mechanic mechanic) {
         this.car = car;
@@ -17,6 +17,7 @@ public class Repair {
         this.price = price;
         this.mechanic = mechanic;
     }
+    //zwraca co było naprawiane
      public String getPart(int v){
         switch(v){
             case 1:
@@ -33,7 +34,7 @@ public class Repair {
                 return "Nie ma takiej opcji ";
         }
      }
-
+    //zwykły toString
     @Override
     public String toString() {
         return car.toString() +" naprawiono: "+getPart(whatRepair)+" za: "+price+" u: "+mechanic.getName();

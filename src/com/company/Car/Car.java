@@ -2,15 +2,13 @@ package com.company.Car;
 
 import com.company.Human.Gamer;
 
-import javax.lang.model.type.NullType;
-
 public class Car {
     private String mark, color, segment;
     public Integer course, brokeEngine, brokeBrakes, brokeGearBox, brokeCarBody, brokeCarSuspension;
     public Double priceEngine, priceBrakes, priceGearBox, priceCarBody, priceCarSuspension, price;
     public Integer loadingSpace = 0;
     public Integer washed = 0;
-
+    //podstawowy contructor - dla osobówek
     public Car(String mark, String color, String segment, Integer course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
                Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody,
                Integer brokeCarSuspension, Double priceCarSuspension, Double price, Integer loadingSpace) {
@@ -31,6 +29,7 @@ public class Car {
         this.price = price;
         this.loadingSpace = loadingSpace;
     }
+    //constructor dla dostawczaków
     public Car(String mark, String color, String segment, Integer course, Integer brokeEngine, Double priceEngine, Integer brokeBrakes,
                Double priceBrakes, Integer brokeGearBox, Double priceGearBox, Integer brokeCarBody, Double priceCarBody,
                Integer brokeCarSuspension, Double priceCarSuspension, Double price) {
@@ -50,13 +49,16 @@ public class Car {
         this.priceCarSuspension = priceCarSuspension;
         this.price = price;
     }
+    //zwraca wartość Mark dla sortowania
     public String getMark() {
         return mark;
     }
+    //zwraca cenę
     public Double getPrice() {
         return price;
     }
-    public void WashCar(Gamer gamer){
+    //funckja do mycia auta, sprawdza, czy już nie zostało umytę
+    public void washCar(Gamer gamer){
         if(this.washed == 1){
             System.out.println("Jest już umyty");
         }
@@ -67,7 +69,7 @@ public class Car {
             gamer.costs += 100.0;
         }
     }
-
+    //pokazuje uszkodzenia w aucie
     public String diplayBrokes(){
         String a1, a2, a3, a4, a5;
         if(this.brokeEngine==1){
@@ -81,10 +83,10 @@ public class Car {
         else
             a2 = "Hamulce - sprawne, ";
         if(this.brokeGearBox==1){
-            a3 = "Skrzynia - sprawna, ";
+            a3 = "Skrzynia Biegów - popsuta, ";
         }
         else
-            a3 = "Skrzynia - sprawna, ";
+            a3 = "Skrzynia Biegów - sprawna, ";
         if(this.brokeCarBody==1){
             a4 = "Karoseria - popsuta,";
         }
@@ -97,11 +99,12 @@ public class Car {
             a5 = " Zawieszenie - sprawne";
         return a1+a2+a3+a4+a5;
     }
-    public String Display(){
+    //wyświetla wszystkie informacje o aucie
+    public String display(){
         return mark+", "+
                 segment+", "+
                 color+", "+
-                course+", "+
+                course+" KM, "+
                 price+" PLN, " +
                 loadingif() +
                 "\n \t"+
@@ -110,18 +113,20 @@ public class Car {
     }
     @Override
     public String toString() {
-        return "Marka='" + mark + '\'' +
-                ", Kolor='" + color + '\'' +
-                ", Segment='" + segment + '\'' +
-                ", Przebieg=" + course +
-                ", Cena=" + price;
+        return "Marka ='" + mark + '\'' +
+                ", Kolor ='" + color + '\'' +
+                ", Segment ='" + segment + '\'' +
+                ", Przebieg =" + course +
+                ", Cena =" + price;
     }
+    //zwraca wartość, czy samochód umyty i zwraca odpowiedniego stringa
     public String washedif(){
         if(washed==1)
             return "Umyty";
         else
             return "Trzeba umyć";
     }
+    //zwraca przestrzeń ładunkową, jeśli to dostawczak
     public String loadingif(){
         if(this.loadingSpace != 0){
             return "może przewieźć: " + loadingSpace + ", ";
